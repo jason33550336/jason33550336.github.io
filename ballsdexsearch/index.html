@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>抓球</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <img src="ballsdex.png" width="100" data-toggle="modal" data-target="#myModal" title="顯示說明">
+
+    <div class="form">
+        <input id="input" style="font-size:20px">
+    </div>
+
+<p>
+         ▲ 使用 jQuery keyup() 方法
+    </p>
+
+    <p>
+        ▼ 使用 jQuery empty()、append()方法
+    </p>
+    <div class="form">
+        <span id=show style="font-size:20px"></span>
+    </div>
+
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        說明
+                    </h4>
+                </div>
+                <div class="modal-body" align="left">
+                    Ballsdex是一個在Discord上的小遊戲，此遊戲的目標是收集國家球。<br>
+                    將此機器人加入伺服器後，在伺服器處於活動狀態時，會在伺服器中產生國家球，<br>
+                    需打出該國家球的正確名稱才能得到它。<br>
+                    本網頁是用來快速查詢國家球的名稱(不分大小寫)，若要搜尋多個關鍵字則以&ldquo;,&rdquo;分隔。<br>
+                    輸入範例如下：<br>
+                    &ldquo;stan&rdquo;：搜尋所有名稱含&ldquo;stan&rdquo;的國家球<br>
+                    &ldquo;fa,d&rdquo;：搜尋所有名稱含&ldquo;fa&rdquo;及&ldquo;d&rdquo;的國家球
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // noprotect
+        $("#input").keyup(find);
+        var country = ["British Empire", "Reichtangle", "Russian Empire", "Mongol Empire", "Scandinavia", "Roman Empire", "Polish-Lithuanian Commonwealth", "Qin Dynasty", "German Empire", "Holy Roman Empire", "Austria-Hungary", "Hunnic Empire", "Japanese Empire", "Republic of China", "Soviet Union", "United States", "Vatican", "Russia", "China", "Austrian Empire", "India", "Ancient Greece", "Japan", "Korea", "Napoleonic France", "Ottoman Empire", "Republic of Venice", "South Korea", "France", "Spanish Empire", "Achaemenid Empire", "Macedon", "United Kingdom", "Pakistan", "Ancient Egypt", "Brazil", "Byzantium", "Greenland", "Portuguese Empire", "Qing", "British Raj", "Carthage", "Italy", "Kingdom of Italy", "Egypt", "RSFSR", "Turkey", "French Empire", "Iran", "Kingdom of Greece", "African Union", "Arab League", "Kingdom of Hungary", "Confederate States", "Gaul", "Germania", "Indonesia", "Mayan Empire", "Yugoslavia", "Germany", "Australia", "Hong Kong", "Israel", "Xiongnu", "Swedish Empire", "Spain", "Antarctica", "Ming Dynasty", "Saudi Arabia", "Franks", "League of Nations", "Monaco", "Union of South Africa", "Ukraine", "Canada", "Poland", "Kingdom of Brandenburg", "Sweden", "Macau", "Scotland", "South Africa", "Greece", "Vietnam", "Safavid Empire", "Thailand", "Parthian Empire", "North Korea", "England", "European Union", "Francoist Spain", "Manchukuo", "NATO", "Republican Spain", "United Arab Republic", "United Nations", "Warsaw Pact", "Weimar Republic", "Zhou", "Yuan Dynasty", "Algeria", "Argentina", "Bangladesh", "Colombia", "Czechia", "Iraq", "Malaysia", "Mexico", "Myanmar", "Netherlands", "Nigeria", "Norway", "Peru", "Philippines", "Portugal", "Prussia", "Romania", "Singapore", "Switzerland", "Syria", "Tuvalu", "United Arab Emirates", "Venezuela", "Mali Empire", "Ukrainian Soviet Socialist Republic", "Ancient Athens", "Ancient Sparta", "Babylon", "Czechoslovakia", "Ethiopian Empire", "French Indochina", "Nauru", "Numidia", "Quebec", "Siam", "South Vietnam", "Taiwan", "Wales", "West Germany", "Cuba", "Kingdom of Egypt", "Mughal Empire", "Angola", "Austria", "Azerbaijan", "Bahamas", "Belarus", "Belgium", "Bolivia", "Bulgaria", "Chile", "Croatia", "Cyprus", "DR Congo", "Denmark", "Ecuador", "Ethiopia", "Finland", "Hungary", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Libya", "Morocco", "North Vietnam", "Oman", "Qatar", "San Marino", "Serbia", "Slovakia", "Sri Lanka", "Sudan", "Tunisia", "Turkmenistan", "Uzbekistan", "Yemen", "Iberian Union", "Faroe Islands", "Trinidad and Tobago", "East Germany", "Free France", "Jamaica", "Maldives", "Northern Ireland", "Tibet", "Golden Horde", "Vichy France", "Andorra", "Brunei", "Byelorussian SSR", "Micronesia", "Tonga", "Grand Duchy of Tuscany", "Khedivate of Egypt", "Khmer Empire", "Barbados", "Marshall Islands", "Armenia", "Bahrain", "Cambodia", "Chad", "Equatorial Guinea", "Free Congo State", "Georgia", "Ghana", "Guatemala", "Guyana", "Ireland", "Kyrgyzstan", "Latvia", "Lithuania", "Mali", "Malta", "Fatimid Caliphate", "Mongolia", "New Zealand", "Samoa", "Slovenia", "Togo", "Uganda", "Uruguay", "Zambia", "Zimbabwe", "Malawi", "Kingdom of Sardinia", "Costa Rica", "Dominica", "Guinea-Bissau", "Sao Tome and Principe", "Tannu Tuva", "Seychelles", "Afghanistan", "Albania", "Belize", "Bosnia", "Botswana", "Cameroon", "Ceylon", "Congo", "Ivory Coast", "Dominican Republic", "Eritrea", "Estonia", "Eswatini", "Fiji", "Free City of Danzig", "Gambia", "Haiti", "Honduras", "Khiva", "Laos", "Lebanon", "Liechtenstein", "Moldova", "Mozambique", "Nepal", "Nicaragua", "Niger", "Palestine", "Paraguay", "Saint Kitts and Nevis", "Saint Lucia", "Somaliland", "South Sudan", "South Yemen", "Tajikistan", "Tanzania", "Western Sahara", "Cape Verde", "Guinea", "Grenada", "Palau", "Saint Vincent and the Grenadines", "Solomon Islands", "Vanuatu", "Principality of Moldavia", "Qajar Dynasty", "Antigua and Barbuda", "Benin", "Majapahit", "Bhutan", "Burkina Faso", "Nanda Empire", "Burundi", "Central African Republic", "Comoros", "El Salvador", "Gabon", "Hejaz", "Iceland", "Kiribati", "Kosovo", "Lesotho", "Liberia", "Luxembourg", "Madagascar", "Mauritania", "Mauritius", "Montenegro", "Namibia", "North Macedonia", "Panama", "Papua New Guinea", "Paris Commune", "Rwanda", "Senegal", "Sierra Leone", "Somalia", "Suriname", "Timor-Leste", "Djibouti"];
+
+        $("#show").empty();
+        var text = "";
+        for (var i = 0; i < country.length; i++) {
+            text += country[i]+"<br>";
+        }
+        $("#show").append(text);
+
+
+        function havestring(a, b) {
+            var tex = a.toLowerCase(); //大字串
+            var t = b.toLowerCase();
+            var keyword = t.split(","); //要尋找的字詞清單
+            var ok = true;
+            for (var j = 0; j < keyword.length; j++) {
+                if (tex.indexOf(keyword[j])==-1) {
+                    ok = false;
+                }
+            }
+            return ok;
+        }
+
+        function find() {
+            $("#show").empty();
+            var gu = $("#input").val();
+            var text = "";
+            var i;
+            if (gu != "") {
+                //搜尋
+                for (i = 0; i < country.length; i++) {
+                    if (havestring(country[i], $("input").val())) {
+                        text += country[i]+"<br>";
+                    }
+                }
+            } else {
+                for (i = 0; i < country.length; i++) {
+                    text += country[i]+"<br>";
+                }
+
+            }
+            if (text == "") {
+                $("#show").append("查無結果");
+            } else {
+                $("#show").append(text);
+            }
+        }
+
+
+
+
+
+    </script>
+
+</body>
+</html>

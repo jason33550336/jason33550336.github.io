@@ -1,0 +1,31 @@
+body {
+    padding: 30px;
+    text-align: center;;
+}
+
+span {
+    color: #000000;
+    text-align: left;
+    width: 50vw;
+    display: inline-block;
+}
+
+.form {
+    margin: 20px;
+}
+input {
+    width: 60vw;
+    transition: 1s;
+    border: 2px solid #333333;
+}
+input:focus {
+    border: 2px solid #4c8bf5;
+    outline: none;
+}
+input:hover {
+    border: 2px solid #4c8bf5;
+}
+
+img {
+    cursor: pointer;
+}
